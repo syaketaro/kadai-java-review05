@@ -29,10 +29,14 @@ public class Review05 {
             String sql = "SELECT * FROM person WHERE id = ?";    // ← 修正
             pstmt = con.prepareStatement(sql);  // ← 修正
             // 5, 6. Select文の実行と結果を格納／代入
+            
+            // Q, 課題ヒント）キーボード入力されたデータはStringであるため、数値になおす必要があります
+            
             System.out.print("検索キーワードを入力してください > ");    // ← 追記
             String input = keyIn();    // ← 追記
-
-            pstmt.setString(1, input);  // ← 追記
+            
+            // 数値変換
+            pstmt.setInt(1, Integer.parseInt(input));  // ← 追記
 
             rs = pstmt.executeQuery();  // ← 修正
 
@@ -86,6 +90,8 @@ public class Review05 {
     /*
      * キーボードから入力された値をStringで返す 引数：なし 戻り値：入力された文字列    // ← 追記
      */
+    
+    // Q, メソッドの仕組み
     private static String keyIn() {
         String line = null;
         try {
